@@ -36,6 +36,6 @@ echo "Disk Space: "
 echo "Process Count: "
 echo "Load Averages: "
 echo "Listening Network Port: "
-echo "UFW Status: $(sudo ufw status) "
+echo "UFW Status: $(sudo -n ufw status 2>/dev/null || echo "sudo password is required")"
 
 echo 
