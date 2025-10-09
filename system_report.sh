@@ -1,5 +1,4 @@
-
-#!/bin/bash -x
+#!/bin/bash
 
 # Line spacing
 echo
@@ -22,13 +21,13 @@ echo "OS: $(hostnamectl | grep 'Operating System:' | awk '{print $3,$4,$5}')"
 echo "Uptime: $(uptime -p)"
 
 # CPU in use
-echo "CPU: "
-echo "RAM: "
-echo "Disk(s): "
-echo "Video: "
-echo "Host Address: "
+echo "CPU: $(lshw -C cpu 2>/dev/null | grep 'product:' | head -n 1 | awk '{print $2, $3, $4, $5, $6, $7, $8}') "
+echo "RAM: $(free -h | awk '/Mem:/  {print $2}' ) "
+echo "Disk(s): $(lsblk -o SIZE -e 7 | awk 'NR>1 {print $1}' | head -n 1) "
+echo "Video: $(lshw -C display 2>/dev/null | awk '/product:/ {print $2, $3, $4, $5, $6, $7, $8}')"
+echo "Host Address: $(ip r | grep default | awk '{print $3}' | head -n 1) "
 echo "Gateway IP: $(ip route | grep default | awk '{print $3}') "
-echo "DNS Server: "
+echo "DNS Server: $(grep nameserver /etc/resolv.conf | awk '{print $2}') "
 
 # Line Break
 echo 
@@ -43,7 +42,7 @@ echo "Users Logged In: $(who | awk '{print $1}' | sort | paste -sd ",")"
 echo "Disk Space: "
 echo "Process Count: "
 echo "Load Averages: "
-echo "Listening Network Port: "
+echo "Listening Network Port: $(netstat -tulpn 2>/dev/null | awk '/LISTEN|udp/{print $4}' | sed 's/.*://' | uniq |tr '\n' ',' | sed 's/,$//') "
 echo "UFW Status: $(sudo -n ufw status 2>/dev/null || echo "sudo password is required")"
 
 echo 
