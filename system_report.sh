@@ -22,11 +22,23 @@ echo "Uptime: $(uptime -p)"
 
 # CPU in use
 echo "CPU: $(lshw -C cpu 2>/dev/null | grep 'product:' | head -n 1 | awk '{print $2, $3, $4, $5, $6, $7, $8}') "
+
+# Processor make and model
 echo "RAM: $(free -h | awk '/Mem:/  {print $2}' ) "
+
+# Make and Model and Size for all Installed disks
 echo "Disk(s): $(cat /sys/block/sda/device/vendor 2>/dev/null; cat /sys/block/sda/device/model 2>/dev/null; lsblk -n -o SIZE /dev/sda | head -n 1)"
+
+# Make and Model of video card
 echo "Video: $(lshw -C display 2>/dev/null | awk '/product:/ {print $2, $3, $4, $5, $6, $7, $8}')"
+
+# IP adresss for the interface
 echo "Host Address: $(ip r | grep default | awk '{print $3}' | head -n 1) "
+
+# Default Gateway
 echo "Gateway IP: $(ip route | grep default | awk '{print $3}') "
+
+# IP of DNS Server
 echo "DNS Server: $(grep nameserver /etc/resolv.conf | awk '{print $2}') "
 
 # Line Break
@@ -39,10 +51,20 @@ echo "-------------"
 
 # List of users logged in
 echo "Users Logged In: $(who | awk '{print $1}' | sort | paste -sd ",")"
+
+# Free disk space for filesystem
 echo "Disk Space: $(lsblk -o SIZE -e 7 | awk 'NR>1 {print $1}' | head -n 1)"
+
+# Process Count
 echo "Process Count: $(ps | wc -l)"
+
+# Load averages
 echo "Load Averages: $(uptime | awk -F'load average: ' '{print $2}') "
+
+# List of listening/open ports
 echo "Listening Network Port: $(netstat -tulpn 2>/dev/null | awk '/LISTEN|udp/{print $4}' | sed 's/.*://' | uniq |tr '\n' ',' | sed 's/,$//')"
+
+# state of firewall
 echo "UFW Status: $(sudo -n ufw status 2>/dev/null || echo "sudo password is required")"
 
 echo
