@@ -33,7 +33,7 @@ This section outlines the planned organization for my course work. **This reposi
 | :--- | :--- | :--- |
 | **`/Assignments`** | Final, graded project submissions that combine multiple skills to solve complex, real-world automation challenges. | System health report scripts, user environment management tools, automated deployment formulas. |
 | **`/Labs`** | Ungraded, foundational exercises and proof-of-concept code used for building initial proficiency in new commands and scripting concepts. | Command-line review exercises, conditional logic (if/else) scripts, regular expression practices. |
-| **`/Resources`** | (Optional) Personal documentation, custom functions, command quick-references, or study guides created during the course. | Bash function library, Ansible playbook templates. |
+| **`/Resources`** | Personal documentation, custom functions, command quick-references, or study guides created during the course. | Bash function library, Ansible playbook templates. |
 
 ---
 
