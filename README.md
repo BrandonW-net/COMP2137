@@ -1,6 +1,3 @@
-# COMP2137 F25
-This repo was created as a demo for Fall 2025
-
 # COMP 2137 F25 - Linux Automation Portfolio
 
 This repository serves as a portfolio of my work for the **COMP 2137 - Linux Automation** course. This course focuses on developing essential administrative scripting and system automation skills within a Linux environment.
@@ -10,8 +7,6 @@ The projects within showcase my ability to leverage the command line and various
 ---
 
 ## 🚀 Key Learning Outcomes & Skills Displayed
-
-The completed assignments and lab work in this repository demonstrate practical proficiency in the following core areas:
 
 ### Scripting and Core Linux
 * **Shell Scripting (Bash):** Writing, debugging, and deploying robust scripts to automate routine, repetitive system administration tasks.
@@ -25,15 +20,26 @@ The completed assignments and lab work in this repository demonstrate practical 
 
 ---
 
-## 👷 Repository Structure (Under Construction)
+## 📂 Scripts
 
-This section outlines the planned organization for my course work. **This repository is currently being set up, and the folders below will be populated soon** as assignments are completed and lab materials are organized.
+### Featured: `configure-host.sh`
+An **idempotent** host-configuration script that sets the system hostname, assigns a
+static IP via netplan, and manages `/etc/hosts` entries — all driven by command-line
+arguments (`-name`, `-ip`, `-hostentry`, `-verbose`). It only changes what isn't already
+correct, backs up the netplan file before editing, logs every change via `logger`,
+enforces a root check, and validates its arguments. Demonstrates configuration-management
+fundamentals in pure Bash.
 
-| Directory | Purpose | Examples of Content |
-| :--- | :--- | :--- |
-| **`/Assignments`** | Final, graded project submissions that combine multiple skills to solve complex, real-world automation challenges. | System health report scripts, user environment management tools, automated deployment formulas. |
-| **`/Labs`** | Ungraded, foundational exercises and proof-of-concept code used for building initial proficiency in new commands and scripting concepts. | Command-line review exercises, conditional logic (if/else) scripts, regular expression practices. |
-| **`/Resources`** | Personal documentation, custom functions, command quick-references, or study guides created during the course. | Bash function library, Ansible playbook templates. |
+### `system_report.sh`
+Generates a formatted system report: OS, uptime, CPU, RAM, disk, gateway/DNS, logged-in
+users, process count, load averages, listening ports, and UFW firewall status.
+
+### Foundational exercises
+| Script | What it does |
+|---|---|
+| `system_id.sh` | Prints hostname, IP address, and uptime |
+| `software_update.sh` | Runs `apt update` and `apt upgrade -y` |
+| `helloworld.sh` | First Bash script — scripting fundamentals |             
 
 ---
 
