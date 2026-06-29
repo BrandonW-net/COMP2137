@@ -1,10 +1,16 @@
 #!/bin/bash
-# configure-host.sh - automated configuration script
-# name: Brandon Williams
-# ID: 200602763
-# course: COMP2137
-# This script configures system hostname, IP address, and hosts file entries
-
+#
+# configure-host.sh - automated host configuration script
+#
+# Author:  Brandon Williams
+# Course:  COMP2137 - Linux Automation
+#
+# Configures the system hostname, static IP address (via netplan), and
+# /etc/hosts entries based on command-line arguments. Changes are idempotent
+# and logged via the system logger.
+#
+# Usage:
+#   sudo ./configure-host.sh [-verbose] [-name HOSTNAME] [-ip IPADDRESS] [-hostentry NAME IP]
 
 # ignore TERM, HUP, and INT signals
 trap '' TERM HUP INT
